@@ -1,3 +1,4 @@
+import sys
 import time
 
 import yaml
@@ -45,6 +46,20 @@ def login():
     send_button.click()
 
 
+def reporthook(count, block_size, total_size):
+    global start_time
+    if count == 0:
+        start_time = time.time()
+        return
+    duration = time.time() - start_time
+    progress_size = int(count * block_size)
+    speed = int(progress_size / (1024 * duration))
+    percent = min(int(count*block_size*100/total_size),100)
+    sys.stdout.write("\r...%d%%, %d MB, %d KB/s, %d seconds passed" %
+                     (percent, progress_size / (1024 * 1024), speed, duration))
+    sys.stdout.flush()
+
+
 def download_video(subject: str, url: str):
     """
     download video lessons
@@ -53,20 +68,24 @@ def download_video(subject: str, url: str):
     :return:
     """
 
-    driver.get(url)
-    # wait till the page is completely load
-    time.sleep(5)
-    # save lesson name
-    lesson = driver.find_elements_by_id("deliveryTitle")[0].text
-    # locate the extension on the screen searching for its icon
-    v = pyautogui.locateOnScreen("./config/icon.png", confidence=.5)
-    # click extension button
-    pyautogui.click(x=v[0], y=v[1], clicks=1, interval=0.0, button="left")
-    # click download button
-    pyautogui.click(x=v[0], y=v[1] * 2, clicks=1, interval=0.0, button="left")
-    source_tag = driver.find_element_by_tag_name("source")
-    urllib.request.urlretrieve(source_tag.get_attribute("src"), f"output/{subject} {lesson}.mp4")
-
+    try:
+        driver.get(url)
+        # wait till the page is completely load
+        time.sleep(5)
+        # save lesson name
+        lesson = driver.find_elements_by_id("deliveryTitle")[0].text
+        # locate the extension on the screen searching for its icon
+        v = pyautogui.locateOnScreen("./config/icon.png", confidence=.5)
+        # click extension button
+        pyautogui.click(x=v[0], y=v[1], clicks=1, interval=0.0, button="left")
+        # click download button
+        pyautogui.click(x=v[0], y=v[1] * 2, clicks=1, interval=0.0, button="left")
+        source_tag = driver.find_element_by_tag_name("source")
+        file_name = f"{subject} {lesson}"
+        print("\n" + file_name)
+        urllib.request.urlretrieve(source_tag.get_attribute("src"), f"output/{file_name}.mp4", reporthook)
+    finally:
+        pass
 
 def main():
     login()
