@@ -3,10 +3,12 @@ A Python Script to download lessons from panopto
 ## How to Use:
 ### Italian: 
 #### Requisiti:
-1) [Python 3.x](https://www.html.it/pag/15609/installare-python/)
-2) [pip](https://www.html.it/pag/346968/pip-il-package-manager-per-python/)
-3) [Chrome](https://www.google.com/chrome/) 
-4) [ChromeDriver](https://chromedriver.chromium.org/downloads)<br/>
+1) Scaricare il progetto cliccando il pulsante clone or download e poi download zip
+2) Estrarre il progetto
+3) [Python 3.x](https://www.html.it/pag/15609/installare-python/)
+4) [pip](https://www.html.it/pag/346968/pip-il-package-manager-per-python/)
+5) [Chrome](https://www.google.com/chrome/) 
+6) [ChromeDriver](https://chromedriver.chromium.org/downloads)<br/>
    la versione win32 funziona sia su dispositivi a 32 che a 64bit
 #### Avviare il Programma
 1) Rinominare il Chrome driver in ```chromedriver``` e inserirlo nella cartella config
@@ -30,10 +32,12 @@ A Python Script to download lessons from panopto
 
 ### English: 
 #### Requirements:
-1) [Python 3.x](https://realpython.com/installing-python/)
-2) [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
-3) [Chrome](https://www.google.com/chrome/) 
-4) [ChromeDriver](https://chromedriver.chromium.org/downloads)<br/>
+1) Download the project by clicking clone or download and then download zip
+2) Extract the project
+3) [Python 3.x](https://realpython.com/installing-python/)
+4) [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
+5) [Chrome](https://www.google.com/chrome/) 
+6) [ChromeDriver](https://chromedriver.chromium.org/downloads)<br/>
    the win32 version works on both windows 32 and 64bit
 #### Run the Program
 1) Rename Chrome Driver into ```chromedriver``` and then insert it into the config folder
